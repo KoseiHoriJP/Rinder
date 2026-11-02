@@ -4,13 +4,7 @@ This page reproduces the report text and figures with layout adapted for GitHub.
 
 [Back to the project README](../README.md)
 
-## Authors
 
-- Soco Great Gilbert Cansancio
-- Sittitaworn Chidchanok
-- Hori Kosei
-- Sota Yatsugi
-- Shiramizu Yuki
 
 ## I. Introduction
 
