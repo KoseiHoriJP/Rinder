@@ -156,13 +156,4 @@ curl --fail http://localhost:8080/api/projects
 
 Expect a JSON list of experiments. A successful frontend build alone does not verify database connectivity, authentication, or participation workflows. Manually check registration, login, experiment registration, survey submission, calendar display, and profile history before claiming full application readiness.
 
-## Current limitations
 
-- API addresses and the allowed frontend origin are fixed to the local development ports above.
-- Python dependencies use version ranges rather than an exact lockfile.
-- Multiple frontend, backend, and schema variants are bundled; use the main paths documented above.
-- The included Flask debug server is intended for local development. Production deployment requires separate configuration and validation.
-
-## References
-
-[1] Ritsumeikan University, ISSE Curriculum Overview. College of Information Science and Engineering, Ritsumeikan University. Accessed: Dec. 2025.
