@@ -18,7 +18,23 @@ Access to the report depends on its Google Docs sharing settings. The feature an
 - View surveys and experiments on a shared calendar.
 - View participation history from the profile page.
 
-These features are represented in the source code; this README does not establish that every workflow has passed end-to-end testing.
+## Diagrams
+
+These diagrams summarize the supplied application code and main database schema.
+
+### System architecture
+
+![Rinder architecture: React frontend communicates with the Flask API, which reads and writes the MySQL database.](docs/diagrams/architecture.png)
+
+[View scalable architecture diagram](docs/diagrams/architecture.svg)
+
+### Database relationships
+
+![Rinder database relationships between users, profiles, experiments, registrations, surveys, questions, and responses.](docs/diagrams/database.png)
+
+[View scalable database diagram](docs/diagrams/database.svg)
+
+Only declared foreign-key relationships are shown. Project and survey creator IDs are stored without declared foreign-key constraints.
 
 ## Technology
 
@@ -34,6 +50,7 @@ These features are represented in the source code; this README does not establis
 src/                       Main React application, pages, and components
 backend/flask_app.py       API used by the main frontend
 backend/rinder_*.sql       Table dumps for the main API
+backend/requirements.txt   Python dependencies
 backend/flask_backend/     Separate backend implementation and SQL dump
 backend/old/               Older table dumps
 frontend/public/           Alternate frontend files
@@ -41,14 +58,15 @@ index.html                 Vite entry page
 vite.config.js             Vite configuration
 package.json               Frontend scripts and dependencies
 package-lock.json          Locked frontend dependency tree
-dist/                      Previously generated frontend build
+docs/diagrams/             Architecture and database images and Graphviz sources
+.env.example               Local backend configuration template
 ```
 
 Use the root-level frontend and `backend/flask_app.py` together. The alternate implementations are not required for this workflow.
 
 ## Local development
 
-The application source was supplied separately as `GroupJ-main (2).zip`. This repository currently contains the README only. Extract that archive and run the following commands from its `GroupJ-main` directory.
+The application source is imported from the supplied `GroupJ-main (2).zip` archive. Installed dependencies and generated frontend output are excluded from version control.
 
 ### Prerequisites
 
@@ -57,7 +75,7 @@ The application source was supplied separately as `GroupJ-main (2).zip`. This re
 - A running MySQL 8-compatible server and a local database account.
 - Platform-specific MySQL client development libraries, compiler tools, and `pkg-config` if needed to install `mysqlclient`, a dependency of Flask-MySQLdb.
 
-Run the commands below from the project root. These are source-derived setup instructions; a complete application startup has not been validated in this environment.
+Run the commands below from the project root. Full application startup requires your own MySQL instance and local configuration.
 
 ### 1. Install frontend dependencies
 
@@ -84,23 +102,41 @@ For example, for each file:
 mysql -u YOUR_LOCAL_USER -p rinder < backend/rinder_users.sql
 ```
 
-The dumps include table replacement statements and sample data. Import them only into a disposable development database. Do not mix them with the alternate schema in `backend/flask_backend/rinder.sql` or the older dumps.
+The published dumps contain schemas only; exported user records and sample rows have been removed. They include table replacement statements, so import them only into a disposable development database. Do not mix them with the alternate schema in `backend/flask_backend/rinder.sql` or the older dumps.
+
+Give your local application database account access to `rinder`. The backend defaults to the username `rinder`; you can override it in the configuration below.
 
 ### 3. Install and configure the backend
 
 ```sh
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install Flask Flask-Cors Flask-MySQLdb
+python -m pip install -r backend/requirements.txt
+cp .env.example .env
 ```
 
-The project does not include a pinned Python dependency manifest. The command above installs the packages imported by the main API; it is not a reproducible Python lockfile.
+Edit `.env` with your own database credentials and a nonempty `FLASK_SECRET_KEY`. Generate a fresh session key locally with:
 
-`backend/flask_app.py` currently defines MySQL connection settings and the Flask session key directly in the source. Review these settings and configure them for your local database before running the backend. Environment-variable configuration is not currently implemented. Do not reuse the bundled credentials or session key for deployment.
+```sh
+python -c 'import secrets; print(secrets.token_hex(32))'
+```
+
+| Variable | Purpose | Default |
+| --- | --- | --- |
+| `MYSQL_HOST` | Database hostname | `localhost` |
+| `MYSQL_USER` | Local database account | `rinder` |
+| `MYSQL_PASSWORD` | Password for that account | Required |
+| `MYSQL_DB` | Database name | `rinder` |
+| `FLASK_SECRET_KEY` | Session signing key | Required and nonempty |
+
+The backend reads environment variables. It does not automatically load `.env`. Load the file in your shell before starting the API; quote values containing shell special characters. Keep `.env` private; it is ignored by Git.
 
 Start the API:
 
 ```sh
+set -a
+. ./.env
+set +a
 python backend/flask_app.py
 ```
 
@@ -137,7 +173,7 @@ Expect a JSON list of experiments. A successful frontend build alone does not ve
 
 ## Current limitations
 
-- Database credentials, the session key, API addresses, and the allowed frontend origin are hardcoded.
-- Python dependency versions are not pinned.
+- API addresses and the allowed frontend origin are fixed to the local development ports above.
+- Python dependencies use version ranges rather than an exact lockfile.
 - Multiple frontend, backend, and schema variants are bundled; use the main paths documented above.
 - The included Flask debug server is intended for local development. Production deployment requires separate configuration and validation.

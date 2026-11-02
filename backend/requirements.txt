@@ -1,0 +1,4 @@
+Flask>=3.0,<4
+Flask-Cors>=4,<7
+Flask-MySQLdb>=2,<3
+PyMySQL>=1.1,<2
