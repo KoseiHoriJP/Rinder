@@ -19,33 +19,6 @@ Read the [complete Group J final report](docs/final-report.md) for all requireme
 - View surveys and experiments on a shared calendar.
 - View participation history from the profile page.
 
-## Diagrams from the final report
-
-The following original figures and accompanying paragraphs are reproduced from *PBL4: Group J Final Report*.
-
-### Figure 2.3 Activity Diagram
-
-![Original activity diagram showing how a project owner views experiment registrants.](docs/diagrams/activity-diagram.png)
-
-The Activity Diagram illustrates the process for a project owner viewing their list of registrants. When the user opens their Profile or Dashboard, the system automatically sends a getHistory or getRegistrant API request using their user ID. The backend identifies projects created by the user and retrieves participant data through a JOIN between the ResearchProject, ExperimentRegistration, and User tables. If no registrants are found, the system displays a “No participants yet” message. Otherwise, it shows a table of participant names, emails, and registration dates. The user may select a participant to view their contact details, after which the activity ends, unless they choose not to select anyone.
-
-### Figure 3.2 E/R Diagram
-
-![Original entity relationship diagram showing users, student and professor profiles, surveys, research projects, and participation records.](docs/diagrams/entity-relationship-diagram.png)
-
-The project’s database uses a relational schema to maintain data integrity across all research-related entities, as shown in the E/R diagram. The core User entity employs inheritance to differentiate Studentsff and Professors, enabling role-specific attributes. One-to-many relationships link each user to the Surveys and ResearchProjects they create, while participation is handled through SurveyResponse and ExperimentRegistration tables that connect users to specific studies. Surveys are further broken down into SurveyQuestion to support flexible question counts. Overall, the schema provides a robust MySQL-based storage layer that supports the system’s dynamic behavior.
-
-### Figure 3.3.1 Coding Class Diagram
-
-![Original coding class diagram showing User, Survey, SurveyResponse, ResearchProject, and ExperimentRegistration.](docs/diagrams/coding-class-diagram.png)
-
-Figure 3.3.1 acts as a technical blueprint for the system’s internal logic, showing how the Flask backend and React frontend interact through defined methods and data structures. Unlike the previous E/R diagram, it highlights application behavior by outlining methods such as register, login, and add_project, which map directly to API routes in the Flask code. It also reflects how user state is managed through session-based authentication and the currentUser logic used to track ownership and participation. The diagram includes implementation-specific types to mirror the formData and fetch payloads used in React. Overall, it clarifies the application’s execution flow and distinguishes the dynamic logic from the underlying database structure.
-
-### Figure 3.3.2 Sequence Diagram for Creating a New Research ProjectPost
-
-![Original sequence diagram showing research-post creation, successful validation, and error responses.](docs/diagrams/create-research-post-sequence-diagram.png)
-
-Figure 3.3.2 illustrates the use case of creating a new research post, showcasing the interaction between the user, the web application frontend, the API gateway, and the database. The process begins when the user initiates a request to create a new research post, prompting the web application to display the project creation form. Once the user submits the project details, the frontend transmits this information to the API gateway, which subsequently attempts to save the new post to the database. The system then utilizes an alternative structure to handle validation outcomes: if validation succeeds, the database confirms the post ID, and the API gateway notifies the frontend that the post is published, resulting in a confirmation message for the user. Also, if validation succeeds, another validation is performed to check if a user is logged in given that this ability is only for logged-in users. Conversely, if validation fails, which can occur with a database error or invalid input, the API gateway receives an error status from the database and triggers the frontend to display an appropriate error message to the user. This flow ensures that data is only persisted when valid and provides immediate feedback to the researcher throughout the creation lifecycle.
 
 ## Technology
 
