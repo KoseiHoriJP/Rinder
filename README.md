@@ -5,6 +5,10 @@
 Rinder is a platform designed to support research participation and collaboration among ISSE students and researchers. It addresses the common difficulty of recruiting participants by providing a centralized space where users can advertise research projects, share surveys, and manage engagement more efficiently. Because first and second year students will need to prepare to choose a lab in their third year, the system also helps such students discover ongoing research within ISSE, enabling them to offer feedback and gain early insight into different laboratories [1]. The main objectives of Rinder: ResearchMatch are to streamline participant recruitment, increase visibility of student research, and foster a more open, collaborative research environment within ISSE. The scope of the PBL4 implementation includes creating and sharing surveys and research posts, completing surveys, expressing interest in specific projects, and browsing available studies through both list and calendar views. Future extensions will focus on the notification system.
 
 
+## Full final report
+
+Read the [complete Group J final report](docs/final-report.md) for all requirements, diagrams, implementation details, recorded test results, lessons learned, references, and the appendix. The key diagrams and setup instructions remain below.
+
 ## Features
 
 - Register an account, sign in, and sign out using session-based authentication.
@@ -65,6 +69,7 @@ index.html                 Vite entry page
 vite.config.js             Vite configuration
 package.json               Frontend scripts and dependencies
 package-lock.json          Locked frontend dependency tree
+docs/final-report.md       Complete final report, including all diagrams and test results
 docs/diagrams/             Original diagram images from the final report
 .env.example               Local backend configuration template
 ```
