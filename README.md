@@ -1,6 +1,10 @@
-# Rinder
+# Rinder: ResearchMatch
 
-Rinder is a research participation web application developed by **Group J**. It brings research surveys and experiments into one place so participants can discover studies and researchers can manage recruitment and responses.
+Developed by **Group J** for PBL4.
+
+## Project overview
+
+Rinder: ResearchMatch is a platform designed to support research participation and collaboration among ISSE students and researchers. It addresses the common difficulty of recruiting participants by providing a centralized space where users can advertise research projects, share surveys, and manage engagement more efficiently. Because first and second year students will need to prepare to choose a lab in their third year, the system also helps such students discover ongoing research within ISSE, enabling them to offer feedback and gain early insight into different laboratories [1]. The main objectives of Rinder: ResearchMatch are to streamline participant recruitment, increase visibility of student research, and foster a more open, collaborative research environment within ISSE. The scope of the PBL4 implementation includes creating and sharing surveys and research posts, completing surveys, expressing interest in specific projects, and browsing available studies through both list and calendar views. Future extensions will focus on the notification system.
 
 ## Final report
 
@@ -187,3 +191,7 @@ Expect a JSON list of experiments. A successful frontend build alone does not ve
 - Python dependencies use version ranges rather than an exact lockfile.
 - Multiple frontend, backend, and schema variants are bundled; use the main paths documented above.
 - The included Flask debug server is intended for local development. Production deployment requires separate configuration and validation.
+
+## References
+
+[1] Ritsumeikan University, ISSE Curriculum Overview. College of Information Science and Engineering, Ritsumeikan University. Accessed: Dec. 2025.
