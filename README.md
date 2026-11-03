@@ -9,7 +9,7 @@ Rinder is a platform designed to support research participation and collaboratio
 
 ## Full final report
 
-Read the [complete Group J final report](docs/final-report.md) for all requirements, diagrams, implementation details, recorded test results, lessons learned, references, and the appendix. Local setup instructions are provided below.
+Read the [final report](docs/final-report.md) for all requirements, diagrams, implementation details, recorded test results, lessons learned, references, and the appendix. Local setup instructions are provided below.
 
 ## Features
 
