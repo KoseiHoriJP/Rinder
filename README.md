@@ -51,9 +51,6 @@ docs/diagrams/             Original diagram images from the final report
 
 Use the root-level frontend and `backend/flask_app.py` together. The alternate implementations are not required for this workflow.
 
-## Local development
-
-The application source is imported from the supplied `GroupJ-main (2).zip` archive. Installed dependencies and generated frontend output are excluded from version control.
 
 ### Prerequisites
 
