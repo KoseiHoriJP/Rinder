@@ -1,5 +1,7 @@
 # Final Report
 
+**English** | [日本語](final-report.ja.md)
+
 This page reproduces the report text and figures with layout adapted for GitHub. Test results are those recorded in the final report. Student IDs and personal email addresses from the cover page are omitted from this public copy.
 
 [Back to the project README](../README.md)

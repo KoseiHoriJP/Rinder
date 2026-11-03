@@ -9,7 +9,7 @@ Rinder is a platform designed to support research participation and collaboratio
 
 ## Full final report
 
-Read the [final report](docs/final-report.md) for all requirements, diagrams, implementation details, recorded test results, lessons learned, references, and the appendix. Local setup instructions are provided below.
+Read the final report in [English](docs/final-report.md) or [日本語](docs/final-report.ja.md) for all requirements, diagrams, implementation details, recorded test results, lessons learned, references, and the appendix. Local setup instructions are provided below.
 
 ## Features
 
@@ -45,6 +45,7 @@ vite.config.js             Vite configuration
 package.json               Frontend scripts and dependencies
 package-lock.json          Locked frontend dependency tree
 docs/final-report.md       Complete final report, including all diagrams and test results
+docs/final-report.ja.md    Japanese translation of the final report
 docs/diagrams/             Original diagram images from the final report
 .env.example               Local backend configuration template
 ```
